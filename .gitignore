@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+.env
+sessions_only.sqlite3
+staticfiles/
+media/
