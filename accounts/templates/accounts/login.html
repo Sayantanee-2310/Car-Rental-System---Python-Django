@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Log in — Wheelbase{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container" style="max-width:440px;">
+    <div class="section-head">
+      <div>
+        <h2>Welcome back</h2>
+        <p>Log in to book a car or manage your bookings.</p>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+
+        {% if form.non_field_errors %}
+          <div class="alert alert-error">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <div class="form-group">
+          <label for="{{ form.username.id_for_label }}">Username or email</label>
+          {{ form.username }}
+        </div>
+        <div class="form-group">
+          <label for="{{ form.password.id_for_label }}">Password</label>
+          {{ form.password }}
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mt-2">Log in</button>
+      </form>
+      <p class="small mt-2 mb-0">Don't have an account? <a href="{% url 'accounts:register' %}">Sign up</a></p>
+    </div>
+  </div>
+</section>
+{% endblock %}
